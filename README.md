@@ -13,37 +13,33 @@ Networks :
 Distributed Systems : 
 1. Amazon's Dynamo DB paper : https://www.allthingsdistributed.com/2007/10/amazons_dynamo.html
 
-
-API gateways:
-
-Alternatives to Spring-boot:
-  i. Micronaut
+Alternatives to Spring-boot :
+1. Micronaut
 
 Service Mesh
 
 Service Discovery
-  i. Netflix Eureka
+1. Netflix Eureka
 
 Distributed applications tracing
 
 Kafka Internals
 
-
 SQL Server query optimizer and query plan chooser
-
 
 Datadog Design
 
 Circuit Breakers
-  i. Hystrix
-
+1. Hystrix
 
 Zookeeper and recipes
 
 Cache design
-  i.  Redis
-  ii. Hazelcast
+1. Redis
+2. Hazelcast
   
 Data collections : Logstash (ELK) vs FluentD(EFK) 
 
+API gateways:
 
+Reverse Proxying vs Forward proxying :
