@@ -44,10 +44,10 @@ some resources that I have collated from the internet
 
 #### Reverse Proxying vs Forward proxying :
 * Proxy means someone or something acting on behalf of someone else.	
-* Forward proxy
+* **Forward proxy**
   * grant the client anonymity (think TOR). [Client knows both the proxy and the server. Server knows only the proxy]
   * A typical usage of forward proxies is grating internet access to internal clients of an organization, which is otherwise blocked by the organization.
-* Reverse proxy 
+* **Reverse proxy** 
   * grant backend servers anonymity (think servers behind a DMZ) [Client knows only the reverse proxy. Server knows both reverse proxy as well as client]
   * A typical usage of a reverse proxy is to provide Internet users access to a server that is behind a firewall. Reverse proxies can also be used to balance load among several back-end servers or to provide caching for a slower back-end server. In addition, reverse proxies can be used simply to bring several servers into the same URL space.
   * Reverse-proxy is also known as gateway.
