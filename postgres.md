@@ -16,18 +16,20 @@ postgres=# select * from test1;
 postgres=# select ctid, xmin, xmax, cmin, cmax, * from test1;
 ```
 
-##### 1.To find out the directory containing the data file for current database
+##### 2.To find out the directory containing the data file for current database
 ```
 postgres=# show data_directory;
 postgres=# select datname, oid as database_oid from pg_database where datname='postgres';
 postgres=# select oid as table_oid, relname, relfilenode from pg_catalog.pg_class where relname='test1';
 ```
 
-##### 2. List down the datafile for this table
+##### 3. List down the datafile for this table
 ```
 ls -al {data_directory}/base/{database_oid}/{table_oid}
 pg_filedump {data_directory}/base/{database_oid}/{table_oid}
 ```
 We will use more of pg_filedump later on.
 ctid(0,1) means this tuple is located as item1 of block0
+
+#### 2.MVCC in Postgres
 
