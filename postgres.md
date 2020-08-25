@@ -8,12 +8,12 @@ It would be good to use tmux and split your terminal in two panes [let's call th
 We will create a table 'test1' under 'public' schema of 'postgres' database.
 
 ##### 1. create the base setup
-```
-postgres=# select current_database();
-postgres=# create table test1(id int, name text, year_of_birth int);
-postgres=# insert into test1 values (1, 'ABC', 1900), (2, 'DEF', 1901), (3, 'GHI', 1902), (4, 'JKL', 1903);
-postgres=# select * from test1;
-postgres=# select ctid, xmin, xmax, cmin, cmax, * from test1;
+```sql
+select current_database();
+create table test1(id int, name text, year_of_birth int);
+insert into test1 values (1, 'ABC', 1900), (2, 'DEF', 1901), (3, 'GHI', 1902), (4, 'JKL', 1903);
+select * from test1;
+select ctid, xmin, xmax, cmin, cmax, * from test1;
 ```
 
 ##### 2.To find out the directory containing the data file for current database
