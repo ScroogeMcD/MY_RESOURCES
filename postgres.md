@@ -40,13 +40,21 @@ We will use more of pg_filedump later on.
 ctid(0,1) means this tuple is located as item1 of block0
 
 #### 2.MVCC in Postgres
-1. Initial state of the data
+1. Some system columns
+ - **ctid** : Tuple identifier, a pair(block_number, tuple_index_within_block). It stores the physical location of the row version within its table.
+ - **xmin** : The transaction id of the inserting transaction for this row version
+ - **xmax** : The transaction id of the deleting transaction, or zero for an undeleted row version. This column can be non-zero in a visible row version, usually
+          indicating that the deleting transaction has not completed yet, or that an attempted deletion was rolled back.
+ - **cmin** : The command identifier (starting at 0) within the inserting transaction.
+ - **cmax** : The command identifier within the deleting transaction, or zero.
+ 
+2. Initial state of the data
 ```sql
 select ctid, xmin, xmax, cmin, cmax, * from test1; 
 
 select lp, t_data from heap_page_items(get_raw_page('test1',0));
 ```
-2. Update a row, and then see the corresponding changes
+3. Update a row, and then see the corresponding changes
 ```sql
 update test1 set year_of_birth=20001 where id=1;
 
