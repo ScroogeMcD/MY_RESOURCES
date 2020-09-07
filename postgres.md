@@ -100,5 +100,7 @@ SHOW TRANSACTION ISOLATION LEVEL; --  if you want to check the current transacti
 |update txn_demo set val=val+1 where id = 1;|||
 |SELECT xmin, xmax,ctid, * from txn_demo where id=1;||xmin here would be T1|
 ||SELECT xmin, xmax, * from txn_demo where id=1;|xmax here would be T1, but we would be seeing the older version as new update is yet to be committed.|
+|commit;| | |
+| |SELECT xmin, xmax, * from txn_demo where id=1;| Now I see the latest version, since the first transaction committed.|
 
 
