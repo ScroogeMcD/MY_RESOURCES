@@ -82,4 +82,23 @@ Now the old version that was kept around is actually deleted, and that space is 
 Postgres does not implement *read uncommitted*, and hence does not allow dirty reads.
 Postgres defaults to *read committed*.
 
+5. **Transactions demo**
+**Question : How is the uncommitted change in one transaction T1, not visible to another transaction T2, even though the underlying data store is the same ?**
+```
+--[TERM1]
+drop table if exists txn_demo;
+CREATE TABLE txn_demo(id INT PRIMARY KEY, val INT NOT NULL);
+INSERT INTO txn_demo values (1, 100),(2,200);
+```
+SHOW TRANSACTION ISOLATION LEVEL; --  if you want to check the current transaction isolation level
+
+| TERMINAL-1| TERMINAL-2|Comments|
+|-----------|-----------|--------|
+|BEGIN TRANSACTION ISOLATION LEVEL READ COMMITTED;|| though default is read committed, still explicitly setting it for clarity|
+|SELECT xmin, xmax, * from txn_demo where id=1;||xmin, xmax are like our tt_begin, tt_end columns that we have in our temporal tables, only these are implicit|
+|select txid_current();||Shows the current txn_id(say T1) which will be assigned to next transaction|
+|update txn_demo set val=val+1 where id = 1;|||
+|SELECT xmin, xmax,ctid, * from txn_demo where id=1;||xmin here would be T1|
+||SELECT xmin, xmax, * from txn_demo where id=1;|xmax here would be T1, but we would be seeing the older version as new update is yet to be committed.|
+
 
