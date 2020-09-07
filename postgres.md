@@ -94,13 +94,13 @@ SHOW TRANSACTION ISOLATION LEVEL; --  if you want to check the current transacti
 
 | TERMINAL-1| TERMINAL-2|Comments|
 |-----------|-----------|--------|
-|BEGIN TRANSACTION ISOLATION LEVEL READ COMMITTED;|| though default is read committed, still explicitly setting it for clarity|
-|SELECT xmin, xmax, * from txn_demo where id=1;||xmin, xmax are like our tt_begin, tt_end columns that we have in our temporal tables, only these are implicit|
-|select txid_current();||Shows the current txn_id(say T1) which will be assigned to next transaction|
-|update txn_demo set val=val+1 where id = 1;|||
-|SELECT xmin, xmax,ctid, * from txn_demo where id=1;||xmin here would be T1|
-||SELECT xmin, xmax, * from txn_demo where id=1;|xmax here would be T1, but we would be seeing the older version as new update is yet to be committed.|
-|commit;| | |
-| |SELECT xmin, xmax, * from txn_demo where id=1;| Now I see the latest version, since the first transaction committed.|
+|```sql BEGIN TRANSACTION ISOLATION LEVEL READ COMMITTED;```|| though default is read committed, still explicitly setting it for clarity|
+|```sql SELECT xmin, xmax, * from txn_demo where id=1;```||xmin, xmax are like our tt_begin, tt_end columns that we have in our temporal tables, only these are implicit|
+|```sql select txid_current();```||Shows the current txn_id(say T1) which will be assigned to next transaction|
+|```sql update txn_demo set val=val+1 where id = 1;```|||
+|```sql SELECT xmin, xmax,ctid, * from txn_demo where id=1;```||xmin here would be T1|
+||```sql SELECT xmin, xmax, * from txn_demo where id=1;```|xmax here would be T1, but we would be seeing the older version as new update is yet to be committed.|
+|```sql commit;```| | |
+| |```sql SELECT xmin, xmax, * from txn_demo where id=1;```| Now I see the latest version, since the first transaction committed.|
 
 
