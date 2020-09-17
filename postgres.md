@@ -4,6 +4,7 @@ Reference used to understand postgres internals : https://blog.anayrat.info/en/2
 
 It would be good to use tmux and split your terminal in two panes [let's call them TERM1 and TERM2]. We will use TERM1 to execute psql commands, and use TERM2 to execute some unix commands and see them work side by side in the same screen.
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------
 #### I. Postgres storage basics
 We will create a table 'test1' under 'public' schema of 'postgres' database.
 
@@ -39,6 +40,7 @@ select tableoid, * from test1;
 We will use more of pg_filedump later on.
 ctid(0,1) means this tuple is located as item1 of block0
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------
 #### 2.MVCC in Postgres
 1. **Some system columns**
  - **ctid** : Tuple identifier, a pair(block_number, tuple_index_within_block). It stores the physical location of the row version within its table.
@@ -82,6 +84,7 @@ Now the old version that was kept around is actually deleted, and that space is 
 Postgres does not implement *read uncommitted*, and hence does not allow dirty reads.
 Postgres defaults to *read committed*.
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------
 5. **Transactions demo I**
 
 **Question : How is the uncommitted change in one transaction T1, not visible to another transaction T2, even though the underlying data store is the same ?**
@@ -104,6 +107,7 @@ SHOW TRANSACTION ISOLATION LEVEL; --  if you want to check the current transacti
 |``` commit;```| | |
 | |``` SELECT xmin, xmax, * from txn_demo where id=1;```| Now I see the latest version, since the first transaction committed.|
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------
 6. **Transactions demo II**
 ```
 --[TERM1]
@@ -125,6 +129,7 @@ INSERT INTO txn_demo values (1, 100),(2,200);
 ||```select xmin, xmax, ctid, * from txn_demo;```||
 ||```COMMIT;```||
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------
 7. **Transactions demo III**
 ```
 --[TERM1]
