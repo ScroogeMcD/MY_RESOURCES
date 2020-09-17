@@ -135,12 +135,12 @@ INSERT INTO txn_demo values (1, 100),(2,200);
 
 | TERMINAL-1| TERMINAL-2|Comments|
 |-----------|-----------|--------|
-|BEGIN TRANSACTION ISOLATION LEVEL SERIALIZABLE;|||
-||BEGIN TRANSACTION ISOLATION LEVEL SERIALIZABLE;||
-|select txid_current();|||
-||select txid_current();||
+|```BEGIN TRANSACTION ISOLATION LEVEL SERIALIZABLE;```|||
+||```BEGIN TRANSACTION ISOLATION LEVEL SERIALIZABLE;```||
+|```select txid_current();```|||
+||```select txid_current();```||
 |``` update txn_demo set val=val+1 where id = 1;```|||
-|select xmin, xmax, ctid, * from txn_demo where id = 1;|||
-||select xmin, xmax, ctid, * from txn_demo where id = 1;||
+|```select xmin, xmax, ctid, * from txn_demo where id = 1;```|||
+||```select xmin, xmax, ctid, * from txn_demo where id = 1;```||
 ||``` update txn_demo set val=val+1 where id = 1;```|The query in terminal 2 is going to stall. What happens if we commit in Term1?|
-|COMMIT;|||
+|```COMMIT;```|||
