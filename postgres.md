@@ -82,7 +82,8 @@ Now the old version that was kept around is actually deleted, and that space is 
 Postgres does not implement *read uncommitted*, and hence does not allow dirty reads.
 Postgres defaults to *read committed*.
 
-5. **Transactions demo**
+5. **Transactions demo I**
+
 **Question : How is the uncommitted change in one transaction T1, not visible to another transaction T2, even though the underlying data store is the same ?**
 ```
 --[TERM1]
@@ -103,4 +104,43 @@ SHOW TRANSACTION ISOLATION LEVEL; --  if you want to check the current transacti
 |``` commit;```| | |
 | |``` SELECT xmin, xmax, * from txn_demo where id=1;```| Now I see the latest version, since the first transaction committed.|
 
+6. **Transactions demo II**
+```
+--[TERM1]
+drop table if exists txn_demo;
+CREATE TABLE txn_demo(id INT PRIMARY KEY, val INT NOT NULL);
+INSERT INTO txn_demo values (1, 100),(2,200);
+```
 
+| TERMINAL-1| TERMINAL-2|Comments|
+|-----------|-----------|--------|
+|```select xmin, xmax, ctid, * from txn_demo;``` |||
+||```select xmin, xmax, ctid, * from txn_demo;``` ||
+|```BEGIN TRANSACTION ISOLATION LEVEL READ COMMITTED;```|||
+||```BEGIN TRANSACTION ISOLATION LEVEL READ COMMITTED;```||
+|```UPDATE txn_demo set val = val+1 where id=1;```|||
+|```select xmin, xmax, ctid, * from txn_demo;```|||
+||```UPDATE txn_demo set val = val+1 where id=1;```||
+||```select xmin, xmax, ctid, * from txn_demo;```||
+|```COMMIT;```|||
+||```COMMIT;```||
+
+7. **Transactions demo III**
+```
+--[TERM1]
+drop table if exists txn_demo;
+CREATE TABLE txn_demo(id INT PRIMARY KEY, val INT NOT NULL);
+INSERT INTO txn_demo values (1, 100),(2,200);
+```
+
+| TERMINAL-1| TERMINAL-2|Comments|
+|-----------|-----------|--------|
+|BEGIN TRANSACTION ISOLATION LEVEL SERIALIZABLE;|||
+||BEGIN TRANSACTION ISOLATION LEVEL SERIALIZABLE;||
+|select txid_current();|||
+||select txid_current();||
+|``` update txn_demo set val=val+1 where id = 1;```|||
+|select xmin, xmax, ctid, * from txn_demo where id = 1;|||
+||select xmin, xmax, ctid, * from txn_demo where id = 1;||
+||``` update txn_demo set val=val+1 where id = 1;```|The query in terminal 2 is going to stall. What happens if we commit in Term1?|
+|COMMIT;|||
