@@ -121,8 +121,8 @@ INSERT INTO txn_demo values (1, 100),(2,200);
 |```UPDATE txn_demo set val = val+1 where id=1;```|||
 |```select xmin, xmax, ctid, * from txn_demo;```|||
 ||```UPDATE txn_demo set val = val+1 where id=1;```||
-||```select xmin, xmax, ctid, * from txn_demo;```||
 |```COMMIT;```|||
+||```select xmin, xmax, ctid, * from txn_demo;```||
 ||```COMMIT;```||
 
 7. **Transactions demo III**
