@@ -37,3 +37,8 @@ $ conn.set('key1', 'value1')
 $ conn.get('key1')
 
 ```
+
+In the experimentation set up below, redis server is running in top-left pane, monitor command in redis-cli is running in bottom-left pane, and python redis client is running in right pane.
+
+![Screenshot 2020-09-21 at 9 40 03 PM](https://user-images.githubusercontent.com/13499858/93793439-75153d00-fc54-11ea-9c2f-bb3dfc2a2832.png)
+
