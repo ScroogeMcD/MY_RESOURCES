@@ -54,3 +54,6 @@ some resources that I have collated from the internet
     * A typical usage of a reverse proxy is to provide Internet users access to a server that is behind a firewall. Reverse proxies can also be used to balance load    among several back-end servers or to provide caching for a slower back-end server. In addition, reverse proxies can be used simply to bring several servers into the same URL space.
   * Reverse-proxy is also known as gateway.
 </details>
+
+#### Syslog:
+The syslog protocol is used to transport messages from network devices to a logging server, typically known as a syslog server.
