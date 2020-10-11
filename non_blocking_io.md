@@ -14,3 +14,23 @@ In the **egde triggered interrupt**, we need the pin to go high and then low onc
 ![level_triggered](https://user-images.githubusercontent.com/13499858/95583628-0c9ecc00-0a5a-11eb-8192-b7d86722ee0f.png)
 
 </details>
+
+## JAVA NIO
+Java NIO consists of the following three core components :   
+* **channels**
+  * *FileChannel* : reads data from and to files
+  * *DatagramChannel* : can read and write data over the network via UDP
+  * *SocketChannel* : can read and write data over the network via TCP
+  * *ServerSocketChannel* : allows to listen for incoming TCP connections, like a webserver does. For each incoming connection, a Socket channel is created. 
+* **buffers**
+  * ByteBuffer
+  * ShortBuffer
+  * IntBuffer
+  * LongBuffer
+  * FLoatBuffer
+  * DoubleBuffer
+  * CharBuffer
+* **selectors**   
+A *selector* allows a single thread to handle multiple *channel*s.
+
+Channel is a bit like a stream. From a *channel*, data can be read into a *buffer*. Also data from a *buffer* can be written into a *channel*. To use a Selector, we can register channels with it, and then we can call its select() method. This will block until there is an event ready with one the registered channels.
