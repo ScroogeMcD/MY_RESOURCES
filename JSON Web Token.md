@@ -2,11 +2,14 @@
 
 
 A **JWT** is represented in the form of three strings separated by dot. For example : *aaaaaaaaaaa.bbbbbbbbbbbbbb.ccccccccccc*. These three parts are called:  
-* **header**
+<details>
+  <summary>header</summary>
   * it is a JSON structure
   * ex : {"alg" : "HS256", "typ" : "JWT"}
   * for unencrypted JWTs, the header is simply {"alg" : "none"}
-* **payload**
+</details>
+<details>
+  <summary>payload</summary>
   * it is also a JSON structure
   * ex : {"sub" : "1234567890", "name" : "Test1", "admin" : true}
   * None of the claims are mandatory, although some of the claims have definite meanings. These specific claims are called **registered claims**.
@@ -18,7 +21,10 @@ A **JWT** is represented in the form of three strings separated by dot. For exam
     * **nbf** : not before (time)
     * **iat** : issued at (time)
     * **jti** : JWT ID
-* **signature**
+</details>
+<details>
+  <summary>signature</summary>
+</details>
 
 #### Two key aspects of JWT are :
 * possibility of **signing** them using **JWS** (JSON Web Signatures) 
