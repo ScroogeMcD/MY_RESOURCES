@@ -28,6 +28,13 @@ A **JWT** is represented in the form of three strings separated by dot. For exam
   <summary>signature</summary>
 </details>
 
+#### An example generation of JWT
+```javascript
+const encodedHeader = base64(utf8(JSON.stringify(header)));
+const encodedPayload = base64(utf8(JSON.stringify(payload))); const signature = base64(hmac(`${encodedHeader}.${encodedPayload}`,secret, sha256));
+const jwt = `${encodedHeader}.${encodedPayload}.${signature}`;
+```
+
 #### Two key aspects of JWT are :
 * possibility of **signing** them using **JWS** (JSON Web Signatures) 
   * If somebody changes the content of the message, the signature generated from this modified message will no longer match the original.
