@@ -49,3 +49,8 @@ const jwt = `${encodedHeader}.${encodedPayload}.${signature}`;
 * **sha256** : a function that returns an array of octets, and returns a new array of octets using the SHA-256 algorithm
 * **hmac** : a function that takes a SHA function, an array of octets and a secret, and returns a new array of octets using the HMAC algorithm
 * **rsassa** : a function that takes a SHA function, an array of octets and the private key, and returns a new array of octets using the RSASSA algorithm.
+
+#### Federated Identity
+A Federated Identity in Information Technology is the means of **linking a person's electronic identity and attributes, stored across multiple identity management systems**. Federated Identity is the means by which an authenticating party can attest to a third party that it had sucessfully authenticated someone or something. The third party accepts the attestation provided by the authenticating part based on mutual trust previously established between the parties, and as a result waives the requirement to authenticate the access requesting party.
+
+Technologies used for federated identity include SAML(Security Assertion Markup Language), OAuth, OpenID, Security Tokens (Simple Web Tokens, JSON Web Tokens, SAML Assertions).
