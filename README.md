@@ -1,6 +1,12 @@
 # MY_RESOURCES
 some resources that I have collated from the internet
 
+#### Must read papers
+1. [ Map Reduce : Simplified Data Processing on Large Clusters ](https://static.googleusercontent.com/media/research.google.com/en//archive/mapreduce-osdi04.pdf)
+2. [Dynamo : Amazon's key-value store](https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf)
+3. [Dataflow Model](https://research.google/pubs/pub43864/)
+4. [MillWheel](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/41378.pdf)
+
 #### JAVA MEMORY MODEL
 1. https://shipilev.net/blog/2016/close-encounters-of-jmm-kind/
 
