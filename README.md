@@ -10,6 +10,7 @@ some resources that I have collated from the internet
 2. [Dynamo : Amazon's key-value store](https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf)
 3. [Dataflow Model](https://research.google/pubs/pub43864/)
 4. [MillWheel](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/41378.pdf)
+5. [Spanner : Google distributed DB](https://www.usenix.org/system/files/conference/osdi12/osdi12-final-16.pdf)
 
 #### JAVA MEMORY MODEL
 1. https://shipilev.net/blog/2016/close-encounters-of-jmm-kind/
