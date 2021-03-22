@@ -1,6 +1,10 @@
 # MY_RESOURCES
 some resources that I have collated from the internet
 
+#### Projects to code yourself
+1. An embedded key-value store (How do you handle off-heap management)
+2. A distributed cache
+
 #### Must read papers
 1. [ Map Reduce : Simplified Data Processing on Large Clusters ](https://static.googleusercontent.com/media/research.google.com/en//archive/mapreduce-osdi04.pdf)
 2. [Dynamo : Amazon's key-value store](https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf)
