@@ -14,15 +14,16 @@ A **JWT** is represented in the form of three strings separated by dot. For exam
   
   * it is also a JSON structure
   * ex : {"sub" : "1234567890", "name" : "Test1", "admin" : true}
+  * Subject is the user, and claims are assertions about the user.
   * None of the claims are mandatory, although some of the claims have definite meanings. These specific claims are called **registered claims**.
   * Examples of registered claims:   
-    * **iss** : issuer
-    * **sub** : subject
-    * **aud** : audience
-    * **exp** : expiration (time)
+    * **iss** : issuer            : who issued the toke (the security token service STS)
+    * **sub** : subject           : who the claims represent
+    * **aud** : audience          : the recepient the token was meant for
+    * **exp** : expiration (time) : until when the token is valid
     * **nbf** : not before (time)
-    * **iat** : issued at (time)
-    * **jti** : JWT ID
+    * **iat** : issued at (time)  : time at which token was issued
+    * **jti** : JWT ID            : Unique token identifier
 </details>
 <details>
   <summary>signature</summary>
