@@ -1,4 +1,7 @@
-### Some postgres sqls snippets
+- [Some postgres sqls snippets](#heading)
+- [I. Postgres storage basics](#heading)
+
+#### Some postgres sqls snippets
 
 Reference used to understand postgres internals : https://blog.anayrat.info/en/2018/11/12/postgresql-and-heap-only-tuples-updates-part-1/
 
@@ -75,18 +78,48 @@ select lp, t_data from heap_page_items(get_raw_page('test1',0));
 ```
 Now the old version that was kept around is actually deleted, and that space is made available for new entries.
 
-4. **Serialization levels in SQL**
-- *read uncommitted*
-- *read committed*
-- *repeatable read*
-- *serializable*
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+4. **Serialization levels in SQL**   
+<details>
+ 
+ <summary> read uncommitted </summary>
+</details>
+<details>
+ 
+ <summary> read committed </summary>
+ 
+ |T1|T2|Comments|
+ |--|--|--------|
+ |```get X```| |finds X to be 2|
+ | |```set X=3```| |
+ |```get X```| |still finds X to be 2|
+ | |```set Y=3```| |
+ | |```COMMIT```| |
+ |```get X```| |now finds X to be 3|
+ 
+ It provides the following two guarantees:
+ * *no dirty reads* : When reading from DB, you will only see data that has been committed. Transaction T1 - in the above example - first finds the value of X to be 2, and then finds the latest value 3 only after T2 has committed. Thus, within the same transaction it is possible for a transaction to find multiple values of an object [initially old value, and then new value], if read multiple times, but only after the updated value has been commited by other concurrent transactions. This can be implemented by keeping both the old and new values(or versions) around (MVCC - Multi Version Concurrency Control).
+       
+ * *no dirty writes* : When writing to DB, you will only overwrite data that has been committed. This can be implemented by taking a lock on each row.
+</details>
+<details>
+ 
+ <summary> repeatable read - also called snapshot isolation </summary>
+ 
+ In the example above for *read committed*, transaction T1 was able to read values of an object that keep getting updated by other transactions, as and when the other transactions commit. In snapshot isolation, the idea is that each transaction reads from a consistent snapshot of the database - i.e. the transaction only sees that state of the DB that was in committed state when this transaction started. Even if the data is subsequently changed and committed by other transactions, each transaction sees only the old data from that particular point in time.
+</details>
+<details>
+ 
+ <summary> serializable </summary>
+</details>
 
 Postgres does not implement *read uncommitted*, and hence does not allow dirty reads.
 Postgres defaults to *read committed*.
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
 5. **Transactions demo I**
-
+<details>
+ 
 **Question : How is the uncommitted change in one transaction T1, not visible to another transaction T2, even though the underlying data store is the same ?**
 ```
 --[TERM1]
@@ -107,8 +140,12 @@ SHOW TRANSACTION ISOLATION LEVEL; --  if you want to check the current transacti
 |``` commit;```| | |
 | |``` SELECT xmin, xmax, * from txn_demo where id=1;```| Now I see the latest version, since the first transaction committed.|
 
+</details>
+
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
 6. **Transactions demo II**
+<details>
+ 
 ```
 --[TERM1]
 drop table if exists txn_demo;
@@ -129,8 +166,12 @@ INSERT INTO txn_demo values (1, 100),(2,200);
 ||```select xmin, xmax, ctid, * from txn_demo;```||
 ||```COMMIT;```||
 
+</details>
+
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
 7. **Transactions demo III**
+<details>
+ 
 ```
 --[TERM1]
 drop table if exists txn_demo;
@@ -149,3 +190,5 @@ INSERT INTO txn_demo values (1, 100),(2,200);
 ||```select xmin, xmax, ctid, * from txn_demo where id = 1;```||
 ||``` update txn_demo set val=val+1 where id = 1;```|The query in terminal 2 is going to stall. What happens if we commit in Term1?|
 |```COMMIT;```|||
+
+</details>
