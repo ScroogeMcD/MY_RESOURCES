@@ -115,6 +115,12 @@ Now the old version that was kept around is actually deleted, and that space is 
 <details>
  
  <summary> serializable </summary>
+ 
+It guarantees that even though transactions may execute in parallel, the end result is the same as if they had executed one at a time - *serially* - without any concurrency. Three techniques that are mostly used to implement serializability in Databases are :    
+  * literally executing transactions in serial order : execute only one transaction at a time, in serial order, on a single thread.
+  * Two Phase Locking (2PL)
+  * Optimistic concurrency control techniques such as Serializable Snapshot Isolation (SSI)
+  
 </details>
 
 Postgres does not implement *read uncommitted*, and hence does not allow dirty reads.
