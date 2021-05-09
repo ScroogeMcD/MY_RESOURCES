@@ -1,5 +1,9 @@
 - [Some postgres sqls snippets](#heading)
 - [I. Postgres storage basics](#heading)
+  * [1. create the base setup](#sub-heading)
+  * [2.To find out the directory containing the data file for current database](#sub-heading)
+  * [3. List down the datafile for this table](#sub-heading)
+- [2.MVCC in Postgres](#heading)
 
 #### Some postgres sqls snippets
 
