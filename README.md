@@ -4,6 +4,8 @@ some resources that I have collated from the internet
 #### Projects to code yourself
 1. An embedded key-value store (How do you handle off-heap management)
 2. A distributed cache
+3. RAFT consensus algorithm
+4. Heap memory manager and garbage collector
 
 #### Must read papers
 1. [ Map Reduce : Simplified Data Processing on Large Clusters ](https://static.googleusercontent.com/media/research.google.com/en//archive/mapreduce-osdi04.pdf)
