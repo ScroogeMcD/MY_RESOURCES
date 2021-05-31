@@ -3,7 +3,7 @@ some resources that I have collated from the internet
 
 #### Projects to code yourself
 1. An embedded key-value store (How do you handle off-heap management)
-2. A distributed cache
+2. A distributed cache (go through eh-cache code)
 3. RAFT consensus algorithm
 4. Heap memory manager and garbage collector
 
