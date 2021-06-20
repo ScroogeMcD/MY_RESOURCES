@@ -70,3 +70,11 @@ some resources that I have collated from the internet
 
 #### Syslog:
 The syslog protocol is used to transport messages from network devices to a logging server, typically known as a syslog server.
+
+#### Maven
+There are three main maven plugins that we use while packaging our application into a jar file, and these plugins follow different concepts while packaging our application with dependencies.
+* **maven jar plugin** : This plugin provides the capability to build and sign jars. But it just compiles the java files under ```src/main java``` and ```src/test/java```. It doesn't include the dependencies JAR files.
+* **maven assembly plugin** : This plugin extracts all dependency jars into raw classes, and group it together. It can also be used to build an executable jar by specifying the main class. It works in projects with few dependencies only. For large projects with many dependencies, it will cause Java class name conflict issue.
+* **maven shade plugin** : It packages all dependencies into one uber-jar. It can also be used to build an executable jar by sepcifying the main class. This plugin is particularly useful as it merges contents of specific files, instead of overwriting them - by **Relocating Classes**. This is needed when there are resource files that have the same name across the jars and the plugin tries to package all the resource file. Two main benefits of shadow are :
+  * Creating an executable JAR distribution
+  * Bundling and relocating common dependencies in libraries to avoid classpath conflicts.
