@@ -78,3 +78,13 @@ There are three main maven plugins that we use while packaging our application i
 * **maven shade plugin** : It packages all dependencies into one uber-jar. It can also be used to build an executable jar by sepcifying the main class. This plugin is particularly useful as it merges contents of specific files, instead of overwriting them - by **Relocating Classes**. This is needed when there are resource files that have the same name across the jars and the plugin tries to package all the resource file. Two main benefits of shadow are :
   * Creating an executable JAR distribution
   * Bundling and relocating common dependencies in libraries to avoid classpath conflicts.
+
+
+#### Some common tmux commands
+* tmux : launches tmux terminal
+* ~/.tmux.conf : file where the tmux related configurations are set. This is where we can change C-b to C-a
+* ```C-a %``` : splits pane vertically
+* ```C-a shift "``` : shifts pane horizontally
+* ```C-a arrow keys``` : for navigation
+* ```C-a : setw synchronize-panes on``` : propagates command typed in one pane into all others
+* ```C-a : setw synchronize-panes off``` : tunrns off propagation to other windows
