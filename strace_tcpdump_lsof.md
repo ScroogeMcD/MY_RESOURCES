@@ -8,6 +8,12 @@ It executes the program referred to by pathname. This causes the program that is
 
 ### strace
 
+It provides details of the system calls being invoked in the system. In OS X, strace is not present. Instead we can use **dtrace** in the following way :
+```sudo dtrace -n 'syscall:::entry /pid == 89348/ {@[probefunc] = count();}'```
+![Screenshot 2021-06-26 at 3 54 46 PM](https://user-images.githubusercontent.com/13499858/123510063-0196d500-d697-11eb-9a48-0636e2ed9ab5.png)
+
+
+
 
 ### tcpdump
 
