@@ -1,6 +1,21 @@
 # MY_RESOURCES
 some resources that I have collated from the internet
 
+#### Why is it difficult to create a distributed DBMS ? [Explanation link](https://dba.stackexchange.com/a/34896)
+* **ACID** are the key invariants to be enforced for a transaction to be reliably implemented, without causing undesirable side effects.
+* **A - Atomicity on distributed systems** : If the data updated by a transaction is spread across multiple nodes, the commit rollback of the nodes must be coordinated. This is less of an issue if the same disk is shared by all the nodes (shared-disk systems), but is a significant overhead on shared-nothing systems
+* **C - Consistency on distributed systems** : Ensuring foreign key references across nodes is difficult (for cases where parent and child of a foreign key relationship reside on different nodes).
+* **I - Isolation on distributed systems** : 
+* **D - Durability** :
+
+Guaranteeing ACID across distributed systems, with shared nothing architecture is very difficult.
+Thus if you do not need ACID guarantees, then choosing a No-sql DB will help you grow horizontally with relative ease and cheap off-the-shelf hardware.
+
+Also a lot of RDBMS are typically optimized for read-heavy workloads. And thus might not peform so well with write heavy workloads.
+
+So far the market for cheap but ultra-high volume fully ACID RDBMS platform is dominated by MySQL, which supports sharding and multi-master replication. Sharding allows very high read throughputs, so this type of architecture scales well on read-heavy workloads.
+
+
 #### Projects to code yourself
 1. An embedded key-value store (How do you handle off-heap management)
 2. A distributed cache (go through eh-cache code)
@@ -88,3 +103,5 @@ There are three main maven plugins that we use while packaging our application i
 * ```C-a arrow keys``` : for navigation
 * ```C-a : setw synchronize-panes on``` : propagates command typed in one pane into all others
 * ```C-a : setw synchronize-panes off``` : tunrns off propagation to other windows
+
+
