@@ -33,8 +33,9 @@ So far the market for cheap but ultra-high volume fully ACID RDBMS platform is d
 1. https://shipilev.net/blog/2016/close-encounters-of-jmm-kind/
 
 #### Interesting blogs :
-1. [Patterns of distributed systems](https://martinfowler.com/articles/patterns-of-distributed-systems/). (Has java code for a lot of distributes system concepts.)
-2. http://vanillajava.blogspot.in/
+1. [Vector clocks in Riak](https://riak.com/posts/technical/vector-clocks-revisited/index.html?p=9545.html) 
+2. [Patterns of distributed systems](https://martinfowler.com/articles/patterns-of-distributed-systems/). (Has java code for a lot of distributes system concepts.)
+3. http://vanillajava.blogspot.in/
 
 #### Networks : 
 1. Implementing a simple web server : https://users.cs.jmu.edu/bernstdh/web/common/lectures/summary_http-server-example_java.php 
