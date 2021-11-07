@@ -33,7 +33,7 @@ So far the market for cheap but ultra-high volume fully ACID RDBMS platform is d
 1. https://shipilev.net/blog/2016/close-encounters-of-jmm-kind/
 
 #### Interesting blogs :
-1. [Patterns of distributed systems](https://martinfowler.com/articles/patterns-of-distributed-systems/)
+1. [Patterns of distributed systems](https://martinfowler.com/articles/patterns-of-distributed-systems/). (Has java code for a lot of distributes system concepts.)
 2. http://vanillajava.blogspot.in/
 
 #### Networks : 
