@@ -11,3 +11,5 @@ instructions, must be in one of these direct-access storage devices. If the data
 
 In compile-time and load-time address-binding methods of a program, identical logical and physical addresses are generated. However execution-time address binding scheme results in differnt logical
 and physical address. The run-time mapping from virtual to physical addresses is done by a hardware device called the **memory-management unit (MMU)**
+
+## Memory-mapping files
