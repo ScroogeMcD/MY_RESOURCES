@@ -1,9 +1,9 @@
-- [Some postgres sqls snippets](####%20Some%20postgres%20sqls%20snippets)
-- [I. Postgres storage basics](####%20I.%20Postgres%20storage%20basics)
+- [Some postgres sqls snippets](#some-postgres-sqls-snippets)
+- [Postgres storage basics](#postgres-storage-basics)
   * [1. create the base setup](#sub-heading)
   * [2.To find out the directory containing the data file for current database](#sub-heading)
   * [3. List down the datafile for this table](#sub-heading)
-- [2.MVCC in Postgres](#heading)
+- [MVCC in Postgres](#mvcc-in-postgres)
 - [Partitioning in Postgres](#partitioning-in-postgres)
 
 #### Some postgres sqls snippets
@@ -13,7 +13,7 @@ Reference used to understand postgres internals : https://blog.anayrat.info/en/2
 It would be good to use tmux and split your terminal in two panes [let's call them TERM1 and TERM2]. We will use TERM1 to execute psql commands, and use TERM2 to execute some unix commands and see them work side by side in the same screen.
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
-#### I. Postgres storage basics
+#### Postgres storage basics
 We will create a table 'test1' under 'public' schema of 'postgres' database.
 
 ##### 1. create the base setup
@@ -49,7 +49,7 @@ We will use more of pg_filedump later on.
 ctid(0,1) means this tuple is located as item1 of block0
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
-#### 2.MVCC in Postgres
+#### MVCC in Postgres
 1. **Some system columns**
  - **ctid** : Tuple identifier, a pair(block_number, tuple_index_within_block). It stores the physical location of the row version within its table.
  - **xmin** : The transaction id of the inserting transaction for this row version
