@@ -4,6 +4,7 @@
   * [2.To find out the directory containing the data file for current database](#sub-heading)
   * [3. List down the datafile for this table](#sub-heading)
 - [2.MVCC in Postgres](#heading)
+- [Partitioning in Postgres](#partitioning-in-postgres)
 
 #### Some postgres sqls snippets
 
@@ -202,3 +203,36 @@ INSERT INTO txn_demo values (1, 100),(2,200);
 |```COMMIT;```|||
 
 </details>
+
+#### Partitioning in Postgres
+* First declare a master table (say ``trade_data``), partitioned by ``trade_date`` field.
+```sql
+create table trade_data(
+	trade_date date not null,
+	security int not null,
+	settle_date date,
+	qty int not null,
+	price numeric(32,8)
+)partition by range (trade_date)
+```
+* Then add partitions to the table, covering some partition range. Also, if a trade_date is not covered by any of the ranges, then we will need to declare a default partition, else an error will be thrown while inserting such records.
+```sql
+create table trade_date_2021
+partition of trade_data
+for values from ('2021-01-01') to ('2021-12-31')
+
+create table trade_date_2022
+partition of trade_data
+for values from ('2022-01-01') to ('2022-12-31')
+
+create table trade_date_default
+partition of trade_data
+DEFAULT
+```
+* We can then insert into the master table, and the record will get stored in the appropriate partition. Nothing will be stored in the master table.
+```sql
+insert into trade_data values ('2021-01-10',1234,'2021-01-12',10,10.56)
+insert into trade_data values ('2019-01-10',1234,'2021-01-12',10,10.56)
+```
+
+* We can insert and query directly to/from the partition tables as well, but even direct insertion needs to honour the range constraint, else an error will be thrown.
