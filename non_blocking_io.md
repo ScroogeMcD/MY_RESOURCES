@@ -34,3 +34,5 @@ Java NIO consists of the following three core components :
 A *selector* allows a single thread to handle multiple *channel*s.
 
 Channel is a bit like a stream. From a *channel*, data can be read into a *buffer*. Also data from a *buffer* can be written into a *channel*. To use a Selector, we can register channels with it, and then we can call its select() method. This will block until there is an event ready with one the registered channels.
+
+[Reference](https://nima101.github.io/kqueue_server)
