@@ -1,4 +1,12 @@
-## JSON Web Token (JWT)
+## JSON Web Token (JWT) - for authentication
+
+The purpose of using JWT is not to hide data, but to ensure the authenticity of the data. JWT is signed and encoded, but **not encrypted**.   
+Client sends *username* and *password* to a server, which validates it, and then returns a JWT, which is to be used for all subsequent communications between the client and the server.
+
+
+![JTW_auth_flow drawio](https://user-images.githubusercontent.com/13499858/149571073-e7f308b2-277d-4d5c-be76-796acecec06f.png)
+
+In order for the communication to be secure, and the JWT to not be captured by a malicious actor, the entire network needs to be encrypted (probably using HTTPS, i.e. HTTP with TLS).
 
 
 A **JWT** is represented in the form of three strings separated by dot. For example : *aaaaaaaaaaa.bbbbbbbbbbbbbb.ccccccccccc*. These three parts are called:  
